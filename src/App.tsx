@@ -3,7 +3,6 @@ import ThemeWithDarkMode from "./components/theme/theme";
 import ColorModeToggler from "./components/theme/ColorModeToggler";
 import Button from "./components/form/Button";
 import Input from "./components/form/Input";
-import FormLabel from "@mui/material/FormLabel";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Slider from "@mui/material/Slider";
@@ -104,17 +103,15 @@ function App() {
           </Grid>
           <Grid item container xs={12} spacing={2}>
             <Grid item xs={3} sm={2}>
-              <FormLabel htmlFor="length">
-                <Input
-                  label="Length"
-                  size="small"
-                  inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    setPasswordLength(isNaN(parseInt(event.target.value)) ? 0 : parseInt(event.target.value));
-                  }}
-                  value={passwordLength}
-                />
-              </FormLabel>
+              <Input
+                label="Length"
+                size="small"
+                inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setPasswordLength(isNaN(parseInt(event.target.value)) ? 0 : parseInt(event.target.value));
+                }}
+                value={passwordLength}
+              />
             </Grid>
             <Grid item xs={9} sm={10}>
               <Slider
