@@ -1,6 +1,8 @@
 # Password generator
 
-Easily generate a password with given length. You can then choose whether password should include:
+App for generating random string that can then be used as password.
+
+You can choose the length of password and whether it should include:
 - symbols
 - numbers
 - uppercase letters
