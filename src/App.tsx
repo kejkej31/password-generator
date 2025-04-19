@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ThemeWithDarkMode from "./components/theme/theme";
 import ColorModeToggler from "./components/theme/ColorModeToggler";
 import Button from "./components/form/Button";
@@ -19,7 +19,7 @@ import Animator from "./components/Animator";
 function App() {
   const [password, setPassword] = useState("");
   const [passwordLength, setPasswordLength] = useState(16);
-  const [useSymbols, setUseSymbols] = useState(true);
+  const [useSymbols, setUseSymbols] = useState(false);
   const [useNumbers, setUseNumbers] = useState(true);
   const [useUppercase, setUseUppercase] = useState(true);
   const [useLowercase, setUseLowercase] = useState(true);
@@ -32,21 +32,34 @@ function App() {
     let charactersSet = "";
     if (useUppercase) {
       charactersSet += letters.toUpperCase();
+      result += letters.charAt(Math.floor(Math.random() * letters.length)).toUpperCase();
     }
     if (useLowercase) {
       charactersSet += letters.toLowerCase();
+      result += letters.charAt(Math.floor(Math.random() * letters.length)).toLowerCase();
     }
     if (useNumbers) {
       charactersSet += numbers;
+      result += numbers.charAt(Math.floor(Math.random() * numbers.length));
     }
     if (useSymbols) {
       charactersSet += symbols;
+      result += symbols.charAt(Math.floor(Math.random() * symbols.length));
     }
-    for (let i = 0; i < passwordLength; i++) {
+    for (let i = 0; i < passwordLength - result.length; i++) {
       result += charactersSet.charAt(Math.floor(Math.random() * charactersSet.length));
     }
+    result = result
+      .substring(0, passwordLength)
+      .split("")
+      .sort(() => Math.random() - 0.5)
+      .join("");
     setPassword(result);
   };
+
+  useEffect(() => {
+    generatePassword();
+  }, []);
 
   const copyPassword = () => {
     navigator.clipboard.writeText(password);
