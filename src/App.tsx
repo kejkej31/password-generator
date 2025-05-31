@@ -46,7 +46,8 @@ function App() {
       charactersSet += symbols;
       result += symbols.charAt(Math.floor(Math.random() * symbols.length));
     }
-    for (let i = 0; i < passwordLength - result.length; i++) {
+    const remainingLength = passwordLength - result.length;
+    for (let i = 0; i < remainingLength; i++) {
       result += charactersSet.charAt(Math.floor(Math.random() * charactersSet.length));
     }
     result = result
